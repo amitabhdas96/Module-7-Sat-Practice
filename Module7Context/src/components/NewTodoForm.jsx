@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useTodoContext } from '../context/TodoContext';
 function NewTodoForm({ addTodo }) {
+const {todos, todoDispatch} = useTodoContext(); 
   const [todo, setTodo] = useState({ title: 'zcvhjzclvhzklcxvhjzxcvs' });
+
   const sumbit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const todo = Object.fromEntries(data);
+    todoDispatch({type: 'addTodo', payload: todo});
+    // const data = new FormData(e.target);
+    // const todo = Object.fromEntries(data);
     // addTodo(todo);
     setTodo({ title: '' });
   };
